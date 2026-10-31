@@ -9,27 +9,13 @@ This document walks through how to use [PuppyGraph](https://www.puppygraph.com) 
 - This repository `unitycatalog` cloned
 - Spark downloaded
 
-## Build the Unity Server and Spark support
+## Build the Unity Catalog Server
 
-Run one of the following from the cloned repository root directory, depending on your Spark version:
+Run the following from the cloned repository root directory:
 
-=== "Spark 4.0.x"
-
-    ```sh
-    build/sbt -DsparkVersion=4.0 clean package publishLocal spark/publishLocal
-    ```
-
-=== "Spark 4.1.x"
-
-    ```sh
-    build/sbt -DsparkVersion=4.1 clean package publishLocal spark/publishLocal
-    ```
-
-=== "Spark 4.2.x"
-
-    ```sh
-    build/sbt -DsparkVersion=4.2 -DdeltaVersion=4.4.1 clean package publishLocal spark/publishLocal
-    ```
+```sh
+build/sbt package
+```
 
 ## Run the Unity Catalog Server
 
@@ -122,6 +108,8 @@ INSERT INTO puppygraph.modern.knows VALUES
 Exit the Spark SQL shell after data insertion is done.
 
 ## Querying the Tables as a Graph
+
+Tested with PuppyGraph 1.17.0.
 
 Start PuppyGraph using Docker. Here we map the PuppyGraph port `8081` to `9081` on the host.
 
